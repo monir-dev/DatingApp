@@ -1,0 +1,45 @@
+Migration Commands:
+------------------
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+
+
+
+
+
+
+
+
+
+
+
+SQLite DB Connection: 
+----------------------
+{
+    "ConnectionStrings" : {
+        "DefaultConnection": ""Data Source=Database.db"
+    }
+}
+
+//services.AddDbContext<DatabaseContext>(options =>options.UseSqlite(Configuration.GetConnectionString("DefaultDatabase")));
+
+
+Postgre DB Connection: 
+----------------------
+{
+    "ConnectionStrings" : {
+        "DefaultDatabase" : "User ID=postgres;Password=root;Server=localhost;Port=5432;Database=datingapp; Integrated Security=true; Pooling=true;"
+    }
+}
+services
+        .AddEntityFrameworkNpgsql()
+        .AddDbContext<DatabaseContext>(
+            options =>options.UseNpgsql(Configuration
+                .GetConnectionString("DefaultDatabase"))
+            );
+
+
+
+//services.AddDbContext<DatabaseContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
+ 
