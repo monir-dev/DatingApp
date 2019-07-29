@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using DatingApp.API.Data;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DatingApp.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class BooksController : Controller
     {
         private readonly DatabaseContext db;
@@ -17,6 +20,7 @@ namespace DatingApp.API.Controllers
             this.db = db;
         }
         
+        [Authorize]
         // GET
         public IActionResult Index()
         {
